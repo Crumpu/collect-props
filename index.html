@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+  <script defer src="./src/index.js"></script>
+  <title>Create account</title>
+</head>
+
+<body>
+  <!-- header -->
+  <div class="cont">
+    <header>
+      <h1>CREATE AN ACCOUNT</h1>
+      <p>We always keep you name and email address private</p>
+    </header>
+    <main>
+      <form>
+        <div class="textContainer">
+          <div>
+            <input type="text" id="f-name" placeholder="First name" >
+          </div>
+          <div>
+            <input type="text" id="l-name" placeholder="Last name" >
+          </div>
+          <div>
+            <input type="text" id="d-name" placeholder="Display name" >
+          </div>
+          <div>
+            <input type="email" id="email" placeholder="Email Address" >
+          </div>
+          <div>
+            <input type="password" id="pass" placeholder="Password" >
+          </div>
+          <div>
+            <input type="password" id="passConf" placeholder="Password Confirmation" >
+          </div>
+        </div>
+        <div class="btn">
+          <div class="buttons">
+            <input type="radio" name="acType" id="bayer">
+            <div>
+              <label for="bayer">Join As a Buyer</label>
+              <p>I am looking for a Name, Logo or Tagline my bussines, brand or product</p>
+            </div>
+          </div>
+          <div class="buttons">
+            <input type="radio" name="acType" id="seller">
+            <div>
+              <label for="seller">Join As a Creative or Marketplace Seller</label>
+              <p>I plan to submit name ideas, Logo designs or sell names in Domain Marketplace</p>
+            </div>
+          </div>
+          <div class="buttons checkbox">
+            <input type="checkbox" name="chb" id="chb">
+            <label for="chb">Allow Squadhelp to send marketing/promotional offers from time to time</label>
+          </div>
+        </div>
+        <div class="btnCreate">
+          <button id="ok" type="submit">
+            Create account
+          </button>  
+           <button id="reset" type="reset">
+                Reset
+            </button>
+        </div>
+      </form>
+    </main>
+  </div>
+</body>
+
+</html>

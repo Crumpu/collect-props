@@ -1,0 +1,132 @@
+* {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+  
+:root {
+  color: white;
+  --wdht: 95%;
+  --mrgn: 10px;
+}
+
+.cont {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width:  500px;
+  height: auto;
+  margin: auto;
+  background-color: #3ea9f5;  
+}
+
+header {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+}
+
+h1 {
+  font-size: 35px;
+}
+
+p {
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+/* Text form */
+
+.textContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: var(--wdht);
+  margin: auto;
+}
+
+.textContainer > div {
+  display: flex;
+  flex-grow: 1;
+  margin: var(--mrgn);
+  height: 50px;
+}
+
+.textContainer > div > input {
+  border: 0px;
+  border-radius: 3px;
+  padding-left: 10px;
+  flex-grow: 1;
+}
+
+/* Buttons */
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  width: var(--wdht);
+  margin: auto;
+}
+
+.buttons {
+  display: flex;
+  border: 1px solid white;
+  margin: var(--mrgn);
+}
+
+.buttons > div {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0 20px 10px;
+}
+
+.buttons > input {
+  margin: 0 5px 20px 10px;
+}
+
+label {
+  font-size: 20px;
+}
+
+.buttons > div > p {
+  font-size: 11px;
+  text-align: justify;
+  margin: 0;
+}
+
+.checkbox {
+  border: 0px;
+  margin: 10px 10px 0 10px;
+}
+
+.checkbox > label {
+  margin: 0 5px 20px 10px;
+  font-size: 12px;
+}
+
+.btnCreate {
+  display: flex;
+  width: var(--wdht);
+  height: 75px;
+  margin: auto;
+  padding: 10px;
+}
+
+
+button {
+  width: 100%;
+  margin: 0 10px 10px 10px;
+  background-color: #28d2d0;
+  border: 0;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+} 
+
+#reset{
+  width: 40%;
+}
+
+#reset:focus, button:focus { 
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.31) inset;
+}
