@@ -123,6 +123,10 @@ button {
   cursor: pointer;
 } 
 
+.disabled{
+  background-color: darkslategrey;
+}
+
 #reset{
   width: 40%;
 }

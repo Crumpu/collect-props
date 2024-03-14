@@ -30,40 +30,21 @@
             <input type="text" id="lname" placeholder="Last name" required>
           </div>
           <div>
-            <input type="text" id="dname" placeholder="Display name" required>
+            <input type="text" id="dname" placeholder="Display name">
           </div>
           <div id="emailDiv">
             <input type="text" id="email" placeholder="Email Address" required>
           </div>
           <div>
-            <input type="password" id="pass" placeholder="Password" >
+            <input type="password" id="pass" placeholder="Password" required>
           </div>
           <div>
-            <input type="password" id="passConf" placeholder="Password Confirmation" >
+            <input type="password" id="passConf" placeholder="Password Confirmation" required>
           </div>
         </div>
-        <div class="btn">
-          <div class="buttons">
-            <input type="radio" name="acType" id="bayer">
-            <div>
-              <label for="bayer">Join As a Buyer</label>
-              <p>I am looking for a Name, Logo or Tagline my bussines, brand or product</p>
-            </div>
-          </div>
-          <div class="buttons">
-            <input type="radio" name="acType" id="seller">
-            <div>
-              <label for="seller">Join As a Creative or Marketplace Seller</label>
-              <p>I plan to submit name ideas, Logo designs or sell names in Domain Marketplace</p>
-            </div>
-          </div>
-          <div class="buttons checkbox">
-            <input type="checkbox" name="chb" id="chb">
-            <label for="chb">Allow Squadhelp to send marketing/promotional offers from time to time</label>
-          </div>
-        </div>
+
         <div class="btnCreate">
-          <button id="ok" type="submit">
+          <button id="ok" class="disabled" disabled type="submit">
             Create account
           </button>  
            <button id="reset" type="reset">
