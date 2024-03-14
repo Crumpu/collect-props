@@ -42,7 +42,7 @@ function saveToLocalStorage(e) {
   const arrayUserInfo = Array.from(userInfo).map((el) => el.value);
   const user = new Person(...arrayUserInfo);
   console.log(user)
-  localStorage.setItem(`${user[1]}`, JSON.stringify(user));
+  localStorage.setItem(`${user.lName}`, JSON.stringify(user));
 }
 
 emailAddress.addEventListener('change', checkEmail);
