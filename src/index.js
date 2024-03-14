@@ -1,48 +1,50 @@
 'use strict';
 
 const regExpEmail = /^\w+\.?\w+@[a-z]{3,8}\.[a-z]{2,5}$/gi;
-
+const emailAddress = document.getElementById('email');
+const userInfo = document.querySelectorAll('input');
+const btnOk = document.getElementById('ok');
+let emailErrorDisplayed = false;
 class Person {
-  constructor(...arg) {
-    arg.fName = fName;
-    arg.lName = lName;
-    arg.dName = dName;
-    arg.email = email;
-    if (!this.regExpEmail.test(this.email))
-      throw new Error('Email entered incorrectly');
+  constructor(fName, lName, dName, email, pass, passConf) {
+    this.fName = fName;
+    this.lName = lName;
+    this.dName = dName;
+    this.email = email;
+    this.pass = pass;
+    this.passConf = passConf;
   }
 }
 
-const userInfo = document.querySelectorAll('input');
+function checkEmail() {
+  const emailAddressValue = emailAddress.value;
+  if (!regExpEmail.test(emailAddressValue)) {
+    if (!emailErrorDisplayed) {
+      const emailError = document.createElement('span');
+      emailError.textContent = 'Email address incorrect';
+      emailError.style.border = 'solid 2px red';
+      emailAddress.parentNode.appendChild(emailError);
+      emailErrorDisplayed = true;
+    }
+  } else {
+    if (emailErrorDisplayed) {
+      const emailError = emailDiv.querySelector('span');
+      if (emailError) {
+        emailError.remove();
+      }
+      emailErrorDisplayed = false;
+    }
+  }
+}
+function saveToLocalStorage(e) {
+  e.preventDefault()
 
-function collectProps(e) {
-  console.log(userInfo);
   const arrayUserInfo = Array.from(userInfo).map((el) => el.value);
-  console.log(arrayUserInfo);
-  const user = new Person(
-    arrayUserInfo.fName,
-    arrayUserInfo.lName,
-    arrayUserInfo.dName,
-    arrayUserInfo.email
-  );
-  console.log(user);
+  const user = new Person(...arrayUserInfo);
+  console.log(user)
+  localStorage.setItem(`${user[1]}`, JSON.stringify(user));
 }
 
-// const btnOk = document.getElementById('ok');
+emailAddress.addEventListener('change', checkEmail);
+btnOk.addEventListener('click', saveToLocalStorage);
 
-// function changeInput() {
-//   e.preventDefault();
-//   localStorage.setItem(`${lName}`, JSON.stringify(user));
-// }
-
-userInfo.forEach((el) => { 
-  el.value.addEventListener('change', collectProps)
-})
- 
-// if (error.message === 'Email entered incorrectly') {
-//   email.style.outline = 'solid 5px red';
-//   const errorText = document.createElement('span');
-//   errorText.setAttribute('id', 'errorSpan');
-//   errorText.textContent = 'Entered wrong email';
-//   emailDiv.appendChild(errorText);
-// }
