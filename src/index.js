@@ -4,6 +4,8 @@
 const regExpEmail = /^\w+\.?\w+@[a-z]{3,8}\.[a-z]{2,5}$/i;
 const emailAddress = document.getElementById('email');
 const userInfo = document.querySelectorAll('input');
+const passInput = document.getElementById('pass');
+const passInputConf = document.getElementById('passConf');
 const btnOk = document.getElementById('ok');
 let user;
 let emailErrorDisplayed = false;
@@ -34,6 +36,7 @@ function checkEmail() {
       const emailError = document.createElement('span');
       emailError.textContent = 'Email address incorrect';
       emailError.style.border = 'solid 2px red';
+      emailError.style.color = 'red';
       emailAddress.parentNode.appendChild(emailError);
       emailErrorDisplayed = true;
     }
@@ -49,13 +52,17 @@ function checkEmail() {
 }
 
 function passValidation() {
-  const spanPas = document.querySelectorAll('.passError');
+  const spanPas = document.getElementsByClassName('passError');
   if (user.pass.length > 7 && user.pass.length <= 20)
     if (user.pass === user.passConf) {
-      spanPas.style.display = 'none';
+      for (let i = 0; i < spanPas.length; i++) {
+        spanPas[i].style.display = 'none';
+      }
       return true;
     }
-  spanPas.style.display = 'block';
+  for (let i = 0; i < spanPas.length; i++) {
+    spanPas[i].style.display = 'block';
+  }
   return false;
 }
 
@@ -80,8 +87,11 @@ function saveToLocalStorage(e) {
 
 // -----------Listeners-----------------------------------------
 
+passInput.addEventListener('change', passValidation);
+passInputConf.addEventListener('change', passValidation);
 emailAddress.addEventListener('change', checkEmail);
 userInfo.forEach((el) => {
-  el.addEventListener('change', createUser, passValidation);
+  el.addEventListener('change', createUser);
 });
+
 btnOk.addEventListener('click', saveToLocalStorage);
