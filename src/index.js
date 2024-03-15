@@ -34,6 +34,7 @@ function checkEmail() {
       const emailError = document.createElement('span');
       emailError.textContent = 'Email address incorrect';
       emailError.style.border = 'solid 2px red';
+      emailError.style.color = 'red';
       emailAddress.parentNode.appendChild(emailError);
       emailErrorDisplayed = true;
     }
