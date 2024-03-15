@@ -5,6 +5,7 @@ const regExpEmail = /^\w+\.?\w+@[a-z]{3,8}\.[a-z]{2,5}$/i;
 const emailAddress = document.getElementById('email');
 const userInfo = document.querySelectorAll('input');
 const btnOk = document.getElementById('ok');
+let user;
 let emailErrorDisplayed = false;
 // ---------------------------------------------------------
 
@@ -22,10 +23,8 @@ class Person {
 function createUser(e) {
   e.preventDefault();
   const arrayUserInfo = Array.from(userInfo).map((el) => el.value);
-  let user = new Person(...arrayUserInfo);
+  user = new Person(...arrayUserInfo);
   enteredInfo(user);
-
-  // localStorage.setItem(`${user.lName}`, JSON.stringify(user));
 }
 
 function checkEmail() {
@@ -50,27 +49,23 @@ function checkEmail() {
 }
 
 function enteredInfo(user) {
-  console.log(user);
-  console.log(user.email);
-  console.log(regExpEmail.test(user.email));
   if (user.fName && user.lName && regExpEmail.test(user.email)) {
     btnOk.classList.remove('disabled');
     btnOk.removeAttribute('disabled');
-  }
-  if (!disabled) {
+  } else {
     btnOk.classList.add('disabled');
-    btnOk.setAttribute('disabled');
+    btnOk.setAttribute('disabled', 'disabled');
   }
-
 }
 
-// function saveToLocalStorage(e) {
-// localStorage.setItem(`${user.lName}`, JSON.stringify(user));
-// }
+function saveToLocalStorage(e) {
+  console.log(user);
+  localStorage.setItem(`${user.lName}`, JSON.stringify(user));
+}
 
+// -----------Listeners-----------------------------------------
 emailAddress.addEventListener('change', checkEmail);
-
 userInfo.forEach((el) => {
   el.addEventListener('change', createUser);
 });
-// btnOk.addEventListener('change', enteredInfo)
+btnOk.addEventListener('click', saveToLocalStorage);
