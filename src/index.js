@@ -3,8 +3,6 @@
 // --------------------------------------------------------
 const regExpEmail = /^\w+\.?\w+@[a-z]{3,8}\.[a-z]{2,5}$/i;
 const emailAddress = document.getElementById('email');
-const passInput = document.getElementById('pass');
-const passConfInput = document.getElementById('passConf');
 const userInfo = document.querySelectorAll('input');
 const btnOk = document.getElementById('ok');
 let user;
@@ -51,17 +49,23 @@ function checkEmail() {
 }
 
 function passValidation() {
+  const spanPas = document.querySelectorAll('.passError');
   if (user.pass.length > 7 && user.pass.length <= 20)
     if (user.pass === user.passConf) {
+      spanPas.style.display = 'none';
       return true;
     }
+  spanPas.style.display = 'block';
   return false;
 }
 
-
-
 function enteredInfo(user) {
-  if (user.fName && user.lName && regExpEmail.test(user.email) && passValidation()) {
+  if (
+    user.fName &&
+    user.lName &&
+    regExpEmail.test(user.email) &&
+    passValidation()
+  ) {
     btnOk.classList.remove('disabled');
     btnOk.removeAttribute('disabled');
   } else {
@@ -76,10 +80,8 @@ function saveToLocalStorage(e) {
 
 // -----------Listeners-----------------------------------------
 
-passInput.addEventListener('change', passValidation);
-passConfInput.addEventListener('change', passValidation);
 emailAddress.addEventListener('change', checkEmail);
 userInfo.forEach((el) => {
-  el.addEventListener('change', createUser);
+  el.addEventListener('change', createUser, passValidation);
 });
 btnOk.addEventListener('click', saveToLocalStorage);
