@@ -38,25 +38,31 @@ p {
 
 /* Text form */
 
-.textContainer {
+#textContainer {
   display: flex;
   flex-wrap: wrap;
   width: var(--wdht);
   margin: auto;
 }
 
-.textContainer > div {
+#textContainer > div {
   display: flex;
   flex-grow: 1;
   margin: var(--mrgn);
   height: 50px;
 }
 
-.textContainer > div > input {
+#textContainer > div > input {
   border: 0px;
   border-radius: 3px;
   padding-left: 10px;
   flex-grow: 1;
+}
+
+#incorrectEmail{
+  display: none;
+  align-items: center;
+  outline: 2px solid red;
 }
 
 /* Buttons */

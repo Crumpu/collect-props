@@ -2,11 +2,11 @@
 
 // --------------------------------------------------------
 const regExpEmail = /^\w+\.?\w+@[a-z]{3,8}\.[a-z]{2,5}$/i;
+const incorrectEmail = document.getElementById('incorrectEmail');
 const emailAddress = document.getElementById('email');
-const userInfo = document.querySelectorAll('input');
+const userInfo = document.getElementById('textContainer');
 const btnOk = document.getElementById('ok');
 let user;
-let emailErrorDisplayed = false;
 // ---------------------------------------------------------
 
 class Person {
@@ -20,32 +20,12 @@ class Person {
   }
 }
 
-function createUser(e) {
-  e.preventDefault();
-  const arrayUserInfo = Array.from(userInfo).map((el) => el.value);
-  user = new Person(...arrayUserInfo);
-  enteredInfo(user);
-}
-
 function checkEmail() {
   const emailAddressValue = emailAddress.value;
   if (!regExpEmail.test(emailAddressValue)) {
-    if (!emailErrorDisplayed) {
-      const emailError = document.createElement('span');
-      emailError.textContent = 'Email address incorrect';
-      emailError.style.border = 'solid 2px red';
-      emailError.style.color = 'red';
-      emailAddress.parentNode.appendChild(emailError);
-      emailErrorDisplayed = true;
-    }
+    incorrectEmail.style.display = 'flex';
   } else {
-    if (emailErrorDisplayed) {
-      const emailError = emailDiv.querySelector('span');
-      if (emailError) {
-        emailError.remove();
-      }
-      emailErrorDisplayed = false;
-    }
+    incorrectEmail.style.display = 'none';
   }
 }
 
@@ -59,14 +39,29 @@ function enteredInfo(user) {
   }
 }
 
-function saveToLocalStorage(e) {
-  console.log(user);
-  localStorage.setItem(`${user.lName}`, JSON.stringify(user));
+function createUser(e) {
+  e.preventDefault();
+  const inputs = userInfo.querySelectorAll('input');
+  const arrayUserInfo = Array.from(inputs).map((el) => el.value);
+  user = new Person(...arrayUserInfo);
+  enteredInfo(user);
 }
 
-// -----------Listeners-----------------------------------------
+function saveToLocalStorage() {
+  localStorage.setItem(
+    user.lName,
+    JSON.stringify(user, function replacer(key, value) {
+      return key === 'dName' || key === 'pass' || key === 'passConf'
+        ? undefined
+        : value;
+    })
+  );
+}
+
+// --------------------------------------------------------------
+
 emailAddress.addEventListener('change', checkEmail);
-userInfo.forEach((el) => {
-  el.addEventListener('change', createUser);
+userInfo.addEventListener('change', (e) => {
+  if (e.target.tagName === 'INPUT') createUser(e);
 });
 btnOk.addEventListener('click', saveToLocalStorage);
