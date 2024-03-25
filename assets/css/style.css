@@ -1,9 +1,9 @@
 * {
-  font-family: "Ubuntu", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   font-weight: 400;
   font-style: normal;
 }
-  
+
 :root {
   color: white;
   --wdht: 95%;
@@ -15,10 +15,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width:  500px;
+  width: 500px;
   height: auto;
   margin: auto;
-  background-color: #3ea9f5;  
+  background-color: #3ea9f5;
 }
 
 header {
@@ -59,11 +59,24 @@ p {
   flex-grow: 1;
 }
 
-#incorrectEmail{
+#incorrectEmail {
   display: none;
   align-items: center;
   outline: 2px solid red;
 }
+
+#passNotMatch {
+  display: none;
+  align-items: center;
+  outline: 2px solid red;
+}
+
+#enterPass {
+  display: none;
+  align-items: center;
+  outline: 2px solid red;
+}
+
 
 /* Buttons */
 
@@ -118,7 +131,6 @@ label {
   padding: 10px;
 }
 
-
 button {
   width: 100%;
   margin: 0 10px 10px 10px;
@@ -127,17 +139,18 @@ button {
   font-size: 18px;
   color: white;
   cursor: pointer;
-} 
+}
 
-.disabled{
+.disabled {
   cursor: not-allowed;
   background-color: darkslategrey;
 }
 
-#reset{
+#reset {
   width: 40%;
 }
 
-#reset:focus, button:focus { 
+#reset:focus,
+button:focus {
   box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.31) inset;
 }

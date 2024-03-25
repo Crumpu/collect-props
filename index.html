@@ -24,33 +24,36 @@
       <form id="form1">
         <div id="textContainer">
           <div>
-            <input type="text" id="fname" placeholder="First name" required>
+            <input type="text" id="fname" placeholder="First name">
           </div>
           <div>
-            <input type="text" id="lname" placeholder="Last name" required>
+            <input type="text" id="lname" placeholder="Last name">
           </div>
           <div>
             <input type="text" id="dname" placeholder="Display name">
           </div>
           <div id="emailDiv">
-            <input type="text" id="email" placeholder="Email Address" required>
+            <input type="text" id="email" placeholder="Email Address">
             <span id="incorrectEmail">Email address incorrect</span>
           </div>
           <div>
-            <input type="password" id="pass" placeholder="Password" >
+            <input type="password" id="pass" placeholder="Password">
+            <span id="enterPass">Password must be between 8 and 20 characters long</span>
           </div>
           <div>
-            <input type="password" id="passConf" placeholder="Password Confirmation" >
+            <input type="password" id="passConf" placeholder="Password Confirmation">
+            <span id="passNotMatch">Passwords do not match</span>
+
           </div>
         </div>
 
         <div class="btnCreate">
           <button id="ok" class="disabled" disabled type="submit">
             Create account
-          </button>  
-           <button id="reset" type="reset">
-                Reset
-            </button>
+          </button>
+          <button id="reset" type="reset">
+            Reset
+          </button>
         </div>
       </form>
     </main>

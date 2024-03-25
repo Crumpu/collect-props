@@ -1,9 +1,14 @@
 'use strict';
 
 // --------------------------------------------------------
+const regExpPass = /^[A-Za-z0-9]{8,20}$/;
 const regExpEmail = /^\w+\.?\w+@[a-z]{3,8}\.[a-z]{2,5}$/i;
 const incorrectEmail = document.getElementById('incorrectEmail');
 const emailAddress = document.getElementById('email');
+const pass = document.getElementById('pass');
+const passConf = document.getElementById('passConf');
+const enterPass = document.getElementById('enterPass');
+const passNotMatch = document.getElementById('passNotMatch');
 const userInfo = document.getElementById('textContainer');
 const btnOk = document.getElementById('ok');
 let user;
@@ -29,8 +34,30 @@ function checkEmail() {
   }
 }
 
+function checkPass() {
+  const passValue = pass.value;
+  const passConfValue = passConf.value;
+  let isValid = false;
+  if (!regExpPass.test(passValue)) {
+    enterPass.style.display = 'flex';
+    isValid = false;
+  } else {
+    enterPass.style.display = 'none';
+    isValid = true;
+    if (passValue !== passConfValue) {
+      passNotMatch.style.display = 'flex';
+      isValid = false;
+    } else {
+      passNotMatch.style.display = 'none';
+      isValid = true;
+    }
+  }
+  
+  return isValid
+}
+
 function enteredInfo(user) {
-  if (user.fName && user.lName && regExpEmail.test(user.email)) {
+  if (user.fName && user.lName && regExpEmail.test(user.email) && checkPass()) {
     btnOk.classList.remove('disabled');
     btnOk.removeAttribute('disabled');
   } else {
@@ -45,6 +72,7 @@ function createUser(e) {
   const arrayUserInfo = Array.from(inputs).map((el) => el.value);
   user = new Person(...arrayUserInfo);
   enteredInfo(user);
+  console.log(user);
 }
 
 function saveToLocalStorage() {
@@ -59,7 +87,8 @@ function saveToLocalStorage() {
 }
 
 // --------------------------------------------------------------
-
+passConf.addEventListener('change', checkPass);
+pass.addEventListener('change', checkPass);
 emailAddress.addEventListener('change', checkEmail);
 userInfo.addEventListener('change', (e) => {
   if (e.target.tagName === 'INPUT') createUser(e);
